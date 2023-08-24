@@ -23,7 +23,7 @@ const UserProfile = ({ userId, category }) => {
   return (
     <div>
       <h1>Welcome, {userData.username}!</h1>
-      <UserDrawings user={userData}  />
+      <UserDrawings user={userData} category={category}  />
     </div>
   );
 };
