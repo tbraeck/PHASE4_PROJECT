@@ -19,7 +19,7 @@ const UserProfile = ({ userId, category }) => {
   if (!userData) {
     return <div>Loading...</div>;
   }
-
+// dog
   return (
     <div>
       <h1>Welcome, {userData.username}!</h1>
