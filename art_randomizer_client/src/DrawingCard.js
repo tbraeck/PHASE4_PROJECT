@@ -1,48 +1,47 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import './styles/DrawingCard.css';
+import EditDrawing from './EditDrawing';
 
-const DrawingCard = ({ drawing, handleAdd, user, category, category_id}) => {
-const [addUserDrawing, setAddUserDrawing] = useState([])
+const DrawingCard = ({ user, categories, handleUpdateSubmit, drawing, handleDeleteClick,  handleSaveDrawingToUserProfile }) => {
+  const [isEditFormVisible, setIsEditFormVisible] = useState(false);
 
-  const {adjective, noun, verb, adverb} = drawing;
+  const { id, adjective, noun, verb, adverb } = drawing;
 
-
-// console.log(drawing)
-const handleAddClick = (e) => {
-  e.preventDefault();
-
-  const aDrawing = {
-    adjective: adjective,
-    noun: noun,
-    verb: verb,
-    adverb: adverb,
-    category_id: category.id,
-    user_id: user.id
+  const handleUpdateUserItem = () => {
+    setIsEditFormVisible(true);
   };
 
-fetch("http://localhost:3000/api/user/drawings", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(aDrawing),
-})
-  .then((r) => r.json())
-  .then((newDrawing) => {
-    setAddUserDrawing([...addUserDrawing, newDrawing])
-  });
-}
+  const handleSave = () => {
+    handleSaveDrawingToUserProfile(drawing);
+  };
 
-return (
-    <div className='drawingCard'>
+  const handleDelete = () => {
+    handleDeleteClick(id);
+  };
+
+  return (
+    <div className="drawingCardContainer">
+      <div className='drawingCard'>
         <h1>The</h1>
         <h2>{adjective}</h2>
         <h2>{noun}</h2>
         <h2>{verb}</h2>
         <h2>{adverb}!</h2>
-        <button onClick={handleAddClick} className='buttonDraw'>Add To Your Drawings</button>
-
+        <button onClick={handleSave} className='saveButton'>
+          SAVE
+        </button>
+        <button onClick={handleDelete} className='deleteButton'>
+          Delete
+        </button>
+        <button onClick={handleUpdateUserItem} className='editButton'>
+          Edit
+        </button>
+        {isEditFormVisible && (
+          <EditDrawing user={user} categories={categories} drawing={drawing} handleUpdateUserItem={handleUpdateUserItem} handleUpdateSubmit={handleUpdateSubmit}/>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DrawingCard
+export default DrawingCard;
