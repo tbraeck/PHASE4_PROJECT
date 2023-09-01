@@ -1,84 +1,119 @@
-
 import React, { useState } from 'react';
-// import { useParams } from 'react-router';
 
-const NewUserDrawing = ({category, categories, setCategories, handleAdd, user}) => {
-const [drawingFormData, setDrawingFormData] = useState({
+const NewUserDrawing = ({ category, categories, setCategories, user }) => {
+  // Initialize drawing form data state
+  const [drawingFormData, setDrawingFormData] = useState({
     adjective: '',
     noun: '',
     verb: '',
     adverb: '',
-    category_id: category.id,
-    user_id: user.id
-    })
-console.log(category)
-  const {adjective, noun, verb, adverb, category_id, user_id} = drawingFormData
-  // console.log(resource)
+  });
 
-console.log(drawingFormData)
+  // Destructure form data
+  const { adjective, noun, verb, adverb } = drawingFormData;
 
-const handleDrawingChange = (e) => {
-  let name = e.target.name;
-  let value = e.target.value;
-  setDrawingFormData({...drawingFormData, [name] :value})
-}
-// console.log(subject.resources)
-let categoryOptions = categories.map(category => (
-  <option value={category.id} key={category.id} defaultValue={'Select'}>{category.name}</option>
-))
+  // Update form data on input change
+  const handleDrawingChange = (e) => {
+    const { name, value } = e.target;
+    setDrawingFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-const handleSubmitDrawing = (e) =>{
-    e.preventDefault()
+  // Handle drawing form submission
+  const handleSubmitDrawing = (e) => {
+    e.preventDefault();
 
-    const newDrawing = {
-        adjective: '',
-        noun: '',
-        verb: '',
-        adverb: '',
-        category_id: "",
-        user_id: user_id
-    }
-    fetch( "http://localhost:3000/api/user/drawings", {
-      method: "POST",
+    // Prepare new drawing data
+    const newDrawingData = {
+      ...drawingFormData,
+      category_id: category.id,
+      user_id: user.id,
+    };
+
+    // Make a POST request to add new drawing
+    fetch('http://localhost:3000/drawings', {
+      method: 'POST',
       headers: {
-        "Content-Type": 'application/json',
+        'Content-Type': 'application/json',
       },
-        body: JSON.stringify(drawingFormData),
+      body: JSON.stringify(newDrawingData),
     })
-        .then((r) => r.json())
-        .then((newDrawingData) => {
-          const newDrawingArray = {
-            ...category, drawings: [category.drawings, newDrawingData]
-           }
-           const updatedCategories = categories.map(dr => dr.id === newDrawingData.category_id ? newDrawingArray : dr)
+      .then((response) => response.json())
+      .then((newDrawing) => {
+        // Update categories with new drawing
+        const updatedCategories = categories.map((categoryItem) =>
+          categoryItem.id === category.id
+            ? {
+                ...categoryItem,
+                drawings: [...categoryItem.drawings, newDrawing],
+              }
+            : categoryItem
+        );
 
-         setCategories(updatedCategories)
-            setDrawingFormData(newDrawing)
-        })
-  }
+        // Update state with updated categories
+        setCategories(updatedCategories);
 
+        // Reset form data
+        setDrawingFormData({
+          adjective: '',
+          noun: '',
+          verb: '',
+          adverb: '',
+        });
+      })
+      .catch((error) => {
+        console.error('Error saving drawing:', error);
+      });
+  };
 
-return (
-  <div className="newDrawingForm" key={user_id}>
-    <div className="h2Wrapper">
-      <h2 className="newDrawingH2">  <b>A</b>dd  <b>N</b>ew  <b>R</b>esources  <b>H</b>ere  </h2>
+  return (
+    <div className="newDrawingForm">
+      <div className="h2Wrapper">
+        <h2 className="newDrawingH2">
+          <b>A</b>dd <b>N</b>ew <b>D</b>rawings <b>H</b>ere
+        </h2>
+      </div>
+      <br />
+      <br />
+      <form className="form" onSubmit={handleSubmitDrawing}>
+        <input
+          className="formInput"
+          type="text"
+          name="adjective"
+          placeholder="adjective"
+          value={adjective}
+          onChange={handleDrawingChange}
+        />
+        <input
+          className="formInput"
+          type="text"
+          name="noun"
+          placeholder="noun"
+          value={noun}
+          onChange={handleDrawingChange}
+        />
+        <input
+          className="formInput"
+          type="text"
+          name="verb"
+          placeholder="verb"
+          value={verb}
+          onChange={handleDrawingChange}
+        />
+        <input
+          className="formInput"
+          type="text"
+          name="adverb"
+          placeholder="adverb"
+          value={adverb}
+          onChange={handleDrawingChange}
+        />
+        <div>
+          <button className="formButton" type="submit">
+            ADD
+          </button>
+        </div>
+      </form>
     </div>
-        <br/><br/>
-            <form className="form" onSubmit={handleSubmitDrawing}>
-                  <input className="formInput" type="text" name="adjective" placeholder="adjective" value={adjective} onChange={handleDrawingChange} />
-                  <input className="formInput" type="text" name="noun" placeholder="noun" value={noun} onChange={handleDrawingChange} />
-                  <input className="formInput" type="text" name="verb" placeholder="verb" value={verb} onChange={handleDrawingChange} /> 
-                  <input className="formInput" type="text" name="adverb" placeholder="adverb" value={adverb} onChange={handleDrawingChange} /> 
-                  <select type="integer" name='category_id' value={category_id} defaultValue="None" onChange={handleDrawingChange}>
-                    {categoryOptions}
-                  </select>
-                  {/* <select type="integer" name='user_id' value={user_id} defaultValue="None" onChange={handleDrawingChange}> */}
-
-                <div>
-                  <button className="formButton" type="submit">ADD</button>
-                </div>
-            </form>
-</div>
   );
 };
 

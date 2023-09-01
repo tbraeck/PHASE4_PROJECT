@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :drawings
     has_many :categories, through: :drawings
+    has_many :user_drawings
 
     has_secure_password
 

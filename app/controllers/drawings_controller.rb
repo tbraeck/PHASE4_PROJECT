@@ -12,7 +12,8 @@ class DrawingsController < ApplicationController
   end
 
   def create
-    drawing = Drawing.create!(drawing_params)
+    user = User.find(params[:user_id])
+    drawing = user.drawings.create!(drawing_params)
     render json: drawing, status: :created
   end
 
@@ -35,6 +36,6 @@ class DrawingsController < ApplicationController
   end
 
   def drawing_params
-      params.permit(:adjective, :noun, :verb, :adverb, :user_id, :category_id)
+      params.require(:drawing).permit(:adjective, :noun, :verb, :adverb, :user_id, :category_id)
     end
 end

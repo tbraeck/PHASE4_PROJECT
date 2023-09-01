@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = ({ user, onLogin}) => {
+const Navbar = ({ user, handleLogout}) => {
 
   const handleLogoutClick = () => {
     fetch("http://localhost:3000/logout", {
@@ -9,17 +9,14 @@ const Navbar = ({ user, onLogin}) => {
     })
     .then((r)=> {
       if(r.ok){
-        onLogin(null)
+        handleLogout(null)
       }
     })
   }
 
     return (
       <div className='headerBack'>
-         <div>
-          <p>Welcome, {user.username}!</p>
-          <button type='submit' onClick={handleLogoutClick} className='logout-button'>Logout</button>
-        </div>
+        
         <div className="linkButtons">
           <div>
             <NavLink to="/">
@@ -32,17 +29,16 @@ const Navbar = ({ user, onLogin}) => {
                 CATEGORIES          
             </button>
             </NavLink>
-            <NavLink to="/randomizer">
+            <NavLink to="/user-profile">
               <button type="button" className="button">
-                RANDOMIZER          
+                USER PROFILE          
             </button>
             </NavLink>
-            {/* <NavLink to="/drawings">
-              <button type="button" className="button">
-                DRAWINGS          
-            </button>
-            </NavLink> */}
           </div>
+          <div className='welcomeLogout'>
+          <p>Welcome, {user.username}!</p>
+          <button type='submit' onClick={handleLogoutClick} >Logout</button>
+        </div>
         </div>
         </div>
       )

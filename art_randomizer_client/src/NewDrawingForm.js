@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewDrawingForm({ handleAdd }) {
+function NewDrawingForm({ handleCreateDrawing }) {
   const [formData, setFormData] = useState({
     adjective: "",
     noun: "",
@@ -15,13 +15,8 @@ function NewDrawingForm({ handleAdd }) {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const aDrawing = {
-      ...formData,
-      likes: 0,
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     fetch("/drawings", {
       method: "POST",
@@ -38,7 +33,7 @@ function NewDrawingForm({ handleAdd }) {
             verb: "",
             adverb: ""
         });
-        handleAdd(newDrawing);
+        handleCreateDrawing(newDrawing);
       });
   }
 

@@ -1,29 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import UserDrawings from './UserDrawings'; // Provide the correct path to UserDrawings
+import React from 'react';
+import UserDrawings from './UserDrawings';
+import { useParams } from 'react-router-dom';
 
-const UserProfile = ({ userId, category }) => {
-  const [userData, setUserData] = useState(null);
+import './styles/UserProfile.css';
 
-  useEffect(() => {
-    // Fetch user data using the provided userId
-    fetch(`http://localhost:3000/users/${userId}`)
-      .then((response) => response.json())
-      .then((user) => {
-        setUserData(user);
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-      });
-  }, [userId]);
+const UserProfile = ({ user, categories, handleSaveDrawing}) => {
+  const {user_id} = useParams();
 
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
-// dog
+  // console.log(userDrawings)
   return (
-    <div>
-      <h1>Welcome, {userData.username}!</h1>
-      <UserDrawings user={userData} category={category}  />
+    <div className="userProfile">
+        <h1> {user.username}'s Drawings</h1>
+        <UserDrawings user={user} user_id={user_id} categories={categories} handleSaveDrawing={handleSaveDrawing}  />
     </div>
   );
 };
