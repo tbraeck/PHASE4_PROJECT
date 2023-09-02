@@ -14,6 +14,7 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
+    align-items: center;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
@@ -31,14 +32,20 @@
   .login-taglineH3 {
     font-size: 16px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: right;
   }
   
   /* Form container */
   .login-form-container {
     margin-top: 20px;
+    justify-content: center;
+    margin: 20px;
   }
   
+  .login-form{
+    display: flex;
+    flex-direction: row;
+  }
   /* Account question */
   .login-account-question {
     font-size: 16px;

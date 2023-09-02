@@ -15,23 +15,23 @@ const Login = () => {
       <h3 className='login-taglineH3'>A place to find and create ideas for what to draw every day.</h3>
       <div className="login-form-container">
         {showLogin ? (
-          <>
+          <div className='login-form'>
             <LoginForm setUser={setUser} />
             <p className="login-account-question">
               Don't have an account?</p> &nbsp;
             <button className="login-toggle-button" onClick={() => setShowLogin(false)}>
               Sign Up
             </button>
-          </>
+          </div>
         ) : (
-          <>
+          <div className='login-form'>
             <SignUpForm setUser={setUser} />
             <p className="login-account-question">
               Already have an account?</p> &nbsp;
             <button className="login-toggle-button" onClick={() => setShowLogin(true)}>
               Log In
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>
