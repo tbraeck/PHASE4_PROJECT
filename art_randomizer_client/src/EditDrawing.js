@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router';
 
 function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisible, setIsEditFormVisible }) {
   const [drawingBody, setDrawingBody] = useState({
@@ -82,83 +81,4 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
 };
 
 export default EditDrawing;
-
-// import React, { useState} from 'react';
-
-
-// const ResourceEdit = ({  subjects, resource, setSubjects, editOn, setEditOn}) => {
-//   const [resourceBody, setResourceBody] = useState({
-//     name: resource.name,
-//     description: resource.description,
-//     url: resource.url,
-//     subject_id: resource.subject_id
-// })
-
-// const {name, description, url} = resourceBody;
-
-// const handleResourceChange = (e) => {
-//   let name = e.target.name
-//   let value = e.target.value
-//   setResourceBody({...resourceBody, [name]:value})
-// }
-
-// const handleUpdateRes = (updatedRes) => {
-//   const subject = subjects.find((sub)=>sub.id === updatedRes.subject_id)
-//   const updatedResources = subject.resources.map(r => r.id === updatedRes.id ? updatedRes : r)
-//   const updatedSubject = {...subject, resources: updatedResources}
-//   const updatedSubjects = subjects.map(s => s.id === subject.id ? updatedSubject : s)
-//   setSubjects(updatedSubjects)              
-// }
-
-// const handleEdit = (e) => {
-//   e.preventDefault()
-//     fetch(`http://localhost:9292/resources/${resource.id}`, {
-//       method: "PATCH",
-//       headers: {
-//           "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(resourceBody)
-//         })
-//           .then((res) => res.json())
-//           .then((updatedRes) => handleUpdateRes(updatedRes))
-//           setEditOn(!editOn)
-//           }
-    
-//   return (
-//     <form className="updateForm" onSubmit={handleEdit}>
-//       <div className='editInput'>
-//       <input
-//         type="text"
-//         name='name'
-//         value={name}
-//         onChange={handleResourceChange}
-//         placeholder="Enter name"
-//       />
-//       </div>
-//       <div className='editInput'>
-//        <input
-//         type="text"
-//         name='description'
-//         value={description}
-//         onChange={handleResourceChange}
-//         placeholder="Enter description"
-//       />
-//       </div>
-//       <div className='editInput'>
-//        <input
-//         type="text"
-//         name='url'
-//         value={url}
-//         onChange={handleResourceChange}
-//         placeholder="Enter url"
-//       />
-//       </div>
-//       <div >
-//         <button  className='updateBtn' type="submit">Submit Changes</button>
-//       </div>
-//     </form>
-//   );
-// };
-
-// export default ResourceEdit;
 

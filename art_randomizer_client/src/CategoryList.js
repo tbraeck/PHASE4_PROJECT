@@ -16,6 +16,7 @@ const CategoryList = ({categories, setCategories, handleUpdateItem}) => {
     ))
 
   return (
+    <div className='cat-page'>
     <div className='categoriesBox'>
         <div className='categories'>
             <h1>DRAWING CATEGORIES</h1>
@@ -23,6 +24,7 @@ const CategoryList = ({categories, setCategories, handleUpdateItem}) => {
         <div className='categoryLinks'>
             {categoryItems}
         </div>
+    </div>
     </div>
   )
 }

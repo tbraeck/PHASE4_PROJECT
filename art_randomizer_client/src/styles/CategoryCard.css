@@ -1,11 +1,20 @@
 /* CategoryCard.css */
-
+.category-container {
+  /* Add container styles */
+  background-image: url('./back3.jpg');
+  background-size: cover; /* Cover the entire container with the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center center; /* Center the background image both horizontally and vertically */
+  background-attachment: fixed; /* Fix the background image in place */
+  padding: 20px; /* Add padding */
+}
 /* Container for the entire CategoryCard */
 .categoryBox {
     margin: 20px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    
   }
   
   /* Subtitle styling */
@@ -15,12 +24,28 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 0px;
+    font-size: 15px;
+    width: fit-content;
+    background-color: #7eecfa; 
+    margin: 20px;/* Change the color code to the desired background color */
+    padding: 10px; /* Add padding to create space around the content */
+    border-radius: 5px; /* Add rounded corners to the box */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
   }
   
+  .categoryTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .catName {
+    margin-top: 0px;
     margin-left: 0px;
   }
   
+  .drawingHead{
+    font-size: 40px;
+  }
   /* Grid container for drawing list and new user form */
   .grid-container {
     display: grid;
@@ -34,6 +59,7 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    margin-left: 20px;
   }
   
   /* Styling for the new user form on the right */

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const NewUserDrawing = ({ category, categories, setCategories, user }) => {
-  // Initialize drawing form data state
   const [drawingFormData, setDrawingFormData] = useState({
     adjective: '',
     noun: '',
@@ -9,27 +8,22 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
     adverb: '',
   });
 
-  // Destructure form data
   const { adjective, noun, verb, adverb } = drawingFormData;
 
-  // Update form data on input change
   const handleDrawingChange = (e) => {
     const { name, value } = e.target;
     setDrawingFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Handle drawing form submission
   const handleSubmitDrawing = (e) => {
     e.preventDefault();
 
-    // Prepare new drawing data
     const newDrawingData = {
       ...drawingFormData,
       category_id: category.id,
       user_id: user.id,
     };
 
-    // Make a POST request to add new drawing
     fetch('http://localhost:3000/drawings', {
       method: 'POST',
       headers: {
@@ -39,7 +33,6 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
     })
       .then((response) => response.json())
       .then((newDrawing) => {
-        // Update categories with new drawing
         const updatedCategories = categories.map((categoryItem) =>
           categoryItem.id === category.id
             ? {
@@ -48,11 +41,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
               }
             : categoryItem
         );
-
-        // Update state with updated categories
         setCategories(updatedCategories);
-
-        // Reset form data
         setDrawingFormData({
           adjective: '',
           noun: '',

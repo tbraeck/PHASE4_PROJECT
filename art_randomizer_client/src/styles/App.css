@@ -18,58 +18,56 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Center-align text in drawing card */
 .drawingCard p {
   margin: 10px 0;
 }
 
-
-/* Adjust styling for the randomizer section */
-.randomizerDiv {
-  margin: 60px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 2px solid rgb(44, 130, 205);
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+.crudButton{
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px; /* Adjust the padding as needed */
+  border: none;
+  margin: 5px;
+  cursor: pointer;
 }
 
-/* Center-align text in randomizer card */
-.randomCard {
-  width: 100%;
-  text-align: center;
-}
-
-/* Updated styles for the header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 70px; /* Reduce top and bottom padding */
-  background-color: #282c34;
-  color: white;
+  padding: 10px 20px 10px 170px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .headerBack {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end; /* Move items to the right */
-  align-items: center;
-  text-align: right;
-  margin-top: 200px;
-  margin-right: 50px; /* Move navbar to the right by 50px */
-  padding: 10px; /* Reduce padding around the content */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  margin-top: 100px;
+  padding: 10px;
 }
 
 .linkButtons {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  margin-bottom: 50px; /* Add space between link buttons and welcome/logout */
+  justify-content: center;
+  margin-bottom: 10px; /* Add space between link buttons and Logout button */
 }
+
+/* Increase font size for buttons */
+.logoutButton {
+  font-size: 18px;
+}
+
+/* Increase font size for text elements */
+.tagline {
+  font-size: 24px;
+}
+
+.taglineH3 {
+  font-size: 18px;
+}
+
 
 .welcomeLogout {
   /* display: flex;
@@ -77,20 +75,54 @@
   align-items: left; /* Center horizontally */
 }
 
-
+/* Add background image properties to .cat-page */
+.cat-page {
+  background-image: url('./back2.jpg'); /* Replace with the actual image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* Other CSS styles for your cat-page class */
+}
 
 .categoriesBox {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 20px; /* Add margin to the left */
+  justify-content: center; /* Vertically center the content */
+  height: 60vh; /* Make the container take the full viewport height */
 }
 
 .categories {
-  font-size: xx-large;
+  font-size: 46px; /* Adjust the font size as needed */
   color: #282c34;
-  padding-left: 20px; /* Add padding to the left */
+  margin:0px;
+  justify-content: space-between; /* Add margin to create spacing */
+  text-align: center; /* Center the text horizontally */
 }
+
+.categoryLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 0px;
+}
+
+.categoryLinks a {
+  color: rgb(221, 55, 26);
+  text-decoration: none;
+  font-size: 30px;
+  transition: color 0.3s, font-size 0.3s, text-shadow 0.3s; /* Add text-shadow to the transition */
+}
+
+.categoryLinks a:hover {
+  color: white;
+  font-size: 38px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text-shadow for outline effect */
+}
+
+
+
 .button {
   border-radius: 20px;
   padding: 12px 20px;
@@ -104,6 +136,7 @@
 
 .newDrawingForm {
   display: flex;
+  background-color: #ddd;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -136,4 +169,39 @@
 
 .formButton:hover {
   background-color: #0056b3; /* Adjust the hover color as needed */
+}
+
+.homeWelcome {
+/* display: flex; */
+  text-align: center;
+  margin-top: 0px;
+  font-size: 88px;
+  color: #333; /* Adjust the color as needed */
+}
+
+/* Define your custom link styles */
+/* Define your custom link styles */
+.custom-link {
+  color: rgb(70, 142, 200); /* Change this to your desired link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s, font-size 0.3s; /* Add smooth transitions for color and font size */
+  font-size: 88px; /* Initial font size */
+}
+
+.custom-link:hover {
+  color: white; /* Change this to the desired hover color */
+  font-size: 98px; /* Increase the font size on hover */
+}
+
+
+.home {
+  background-image: url('./5183000.jpg'); /* Use a relative path to the image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* Adjust this property to move content closer to the top */
+  align-items: center;
+  flex-direction: column;
+  padding-top: 80px; /* Add some top padding to create space between navbar and text */
 }

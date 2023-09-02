@@ -10,7 +10,7 @@ const Header = ({ handleLogout }) => {
     <div className='header'>
       <Link to='/' relative="path">
         <img src='../DRAWINGIDEAS.gif' 
-        style={{width: 500, paddingTop: 0}}
+        style={{width: 400, paddingTop: 0}}
         alt='art banner'/>
       </Link>
       <Navbar user={user} setUser={setUser} handleLogout={handleLogout}  />
