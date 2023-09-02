@@ -39,7 +39,7 @@ const handleSaveDrawingToUserProfile = (drawing) => {
       }
     })
     .then((savedDrawing) => {
-      setUserDrawings([...userDrawings, savedDrawing]); // Add the saved drawing to the drawings state
+      setUserDrawings([...userDrawings, savedDrawing]); 
       handleUpdateSubmit(savedDrawing); 
       console.log('Drawing saved to user profile:', savedDrawing);
     })
@@ -142,41 +142,3 @@ return(
 
 export default CategoryCard;
 
-
-// import React from 'react';
-// import UserDrawings from './UserDrawings';
-
-// const CategoryCard = ({ category, handleUpdateItem }) => {
-//   const handleSaveDrawing = async (drawing) => {
-//     try {
-//       // Make an API call to save the drawing to the user's profile
-//       const response = await fetch(`http://localhost:3000/users/${user.id}/drawings`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(drawing),
-//       });
-
-//       if (response.ok) {
-//         // Update the user's drawings list
-//         const savedDrawing = await response.json();
-//         handleUpdateItem(savedDrawing); // Assuming you have a function to update user's drawings
-//         console.log('Drawing saved to user profile:', savedDrawing);
-//       } else {
-//         console.error('Failed to save drawing to user profile');
-//       }
-//     } catch (error) {
-//       console.error('Error saving drawing:', error);
-//     }
-//   };
-
-//   return (
-//     <div className="categoryCard">
-//       {/* Other category card content */}
-//       <UserDrawings user={user} handleSaveDrawing={handleSaveDrawing} />
-//     </div>
-//   );
-// };
-
-// export default CategoryCard;

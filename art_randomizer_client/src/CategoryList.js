@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const CategoryList = ({categories, setCategories, handleUpdateItem}) => {
+const CategoryList = ({categories}) => {
    console.log(categories)
 
    const categoryItems = categories.map((category) => (

@@ -49,38 +49,21 @@ const handleUpdateItem = (updatedDrawing) => {
   setCategories(editedItems)
 }
 
-
-// const handleUpdateSubmit = (drawingId, updatedDrawing) => {
-//   // Find the drawing to update
-//   const updatedCategories = categories.map((category) => {
-//     const updatedDrawings = category.drawings.map((drawing) =>
-//       drawing.id === drawingId ? updatedDrawing : drawing
-//     );
-//     return { ...category, drawings: updatedDrawings };
-//   });
-
-//   setCategories(updatedCategories);
-// };
-
-
-// console.log(categories)
-
 if(!user) return <Login  />
-// if(user) return <UserProfile categories={categories}/>
-  return (
+
+return (
     <div className="App">
       <Header handleLogout={handleLogout} />
-      <div>
-      {/* {user ? <UserProfile user={user} /> : <Login  />} */}
+    <div>
     </div>
-          <Routes>
-         <Route  exact path="/" element={<Home/>}/>
-         <Route path="/categories" element={<CategoryList categories={categories}  handleUpdateItem={handleUpdateItem}  setCategories={setCategories}/> } />  
-         <Route path="/categories/:id" element={<CategoryCard categories={categories}  handleUpdateItem={handleUpdateItem}  handleAdd={handleAdd} setCategories={setCategories}/>}/>
-         <Route path="/categories/:id/edit" element={<CategoryCard categories={categories} setCategories={setCategories} handleAdd={handleAdd}/>}/>
-         <Route path="/users/:user_id/drawings/:drawing_id" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
-         <Route path="/user-profile" element={user ? <UserProfile user={user}/> : <Navigate to="/" />} />
-      </Routes>
+        <Routes>
+            <Route  exact path="/" element={<Home/>}/>
+            <Route path="/categories" element={<CategoryList categories={categories}  handleUpdateItem={handleUpdateItem}  setCategories={setCategories}/> } />  
+            <Route path="/categories/:id" element={<CategoryCard categories={categories}  handleUpdateItem={handleUpdateItem}  handleAdd={handleAdd} setCategories={setCategories}/>}/>
+            <Route path="/categories/:id/edit" element={<CategoryCard categories={categories} setCategories={setCategories} handleAdd={handleAdd}/>}/>
+            <Route path="/users/:user_id/drawings/:drawing_id" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
+            <Route path="/user-profile" element={user ? <UserProfile user={user}/> : <Navigate to="/" />} />
+        </Routes>
       </div>
   );
 }
@@ -89,4 +72,3 @@ if(!user) return <Login  />
 export default App;
 
 
-// handleUpdateUserItem={handleUpdateUserItem}
