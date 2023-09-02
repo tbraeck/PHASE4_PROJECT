@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import DrawingCard from './DrawingCard';
-// import EditDrawing from './EditDrawing';
 
 import './styles/UserDrawings.css';
 
-const UserDrawings = ({ user, handleUpdate, handleSaveDrawingToUserProfile }) => {
+const UserDrawings = ({ user, handleSaveDrawingToUserProfile }) => {
   const [userDrawings, setUserDrawings] = useState([])
  
   useEffect(() => {
@@ -24,10 +23,6 @@ const UserDrawings = ({ user, handleUpdate, handleSaveDrawingToUserProfile }) =>
       });
   }, [user.id]);
 
-  // if (!userDrawings || !Array.isArray(userDrawings)) {
-  //   return <div>No drawings to display.</div>;
-  // }
-
   const handleDelete = (drawingId) => {
     fetch(`http://localhost:3000/users/${user.id}/user_drawings/${drawingId}`, {
       method: "DELETE",
@@ -37,47 +32,41 @@ const UserDrawings = ({ user, handleUpdate, handleSaveDrawingToUserProfile }) =>
     })
     .then((response) => {
       if (response.ok) {
-        // Successful deletion, update userDrawings
         const updatedUserDrawings = userDrawings.filter(
           (drawing) => drawing.id !== drawingId
         );
         setUserDrawings(updatedUserDrawings);
       } else {
         console.error("Failed to delete drawing");
-        // Handle error if the DELETE request fails
       }
     })
     .catch((error) => {
       console.error("Error deleting drawing:", error);
-      // Handle any other errors that may occur
     });
   };
-  
-  
 
+const handleUpdateUserDrawings = (updatedDrawing) => {
+  setUserDrawings((prevUserDrawings) => {
+    const updatedUserDrawings = prevUserDrawings.map((drawing) =>
+      drawing.id === updatedDrawing.id ? updatedDrawing : drawing
+    );
+    return updatedUserDrawings;
+  });
+};
 
-  const handleUpdateUserItem = (updatedDrawing) => {
-    const editedItems = userDrawings.map((item) => {
-      if (item.id === updatedDrawing.id) {
-        return updatedDrawing;
-      } else {
-        return item;
-      }
-    });
-    setUserDrawings(editedItems);
-  };
-  
   return (
     <div className="drawingList">
       {userDrawings.map((drawing) => (
         <div key={drawing.id}>
        <DrawingCard
-  drawing={drawing}
-  handleDeleteClick={() => handleDelete(drawing.id)}
-  user={user}
-  handleUpdateUserItem={handleUpdateUserItem}
-  handleSaveDrawing={handleSaveDrawingToUserProfile} // Make sure this prop is correctly named
-/>
+            drawing={drawing}
+            handleDeleteClick={() => handleDelete(drawing.id)}
+            user={user}
+            handleUpdateUserDrawings={handleUpdateUserDrawings}
+            userDrawings={userDrawings}
+            setUserDrawings={setUserDrawings}
+            handleSaveDrawing={handleSaveDrawingToUserProfile} // Make sure this prop is correctly named
+          />
         </div>  
       ))}
     </div>

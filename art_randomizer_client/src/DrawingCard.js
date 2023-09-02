@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import './styles/DrawingCard.css';
 import EditDrawing from './EditDrawing';
+// import UserDrawings from './UserDrawings';
 
-const DrawingCard = ({ user, categories, handleUpdateSubmit, drawing, handleDeleteClick,  handleSaveDrawingToUserProfile }) => {
+const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories, handleUpdateSubmit, handleUpdateUserDrawings, handleDeleteClick,  handleSaveDrawingToUserProfile }) => {
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
 
   const { id, adjective, noun, verb, adverb } = drawing;
 
-  const handleUpdateUserItem = () => {
+  const handleShowEditForm = () => {
     setIsEditFormVisible(true);
   };
 
@@ -18,9 +19,14 @@ const DrawingCard = ({ user, categories, handleUpdateSubmit, drawing, handleDele
   const handleDelete = () => {
     handleDeleteClick(id);
   };
-
+// console.log(userDrawings)
   return (
-    <div className="drawingCardContainer">
+
+    <div className='drawingEdit' onDoubleClick={()=> setIsEditFormVisible((isEditFormVisible)=>!isEditFormVisible)}>
+    {isEditFormVisible? 
+      <EditDrawing user={user} categories={categories} drawing={drawing} handleShowEditForm={handleShowEditForm} userDrawings={userDrawings} setUserDrawings={setUserDrawings} handleUpdateSubmit={handleUpdateSubmit} isEditFormVisible={isEditFormVisible} setIsEditFormVisible={setIsEditFormVisible} handleUpdateUserDrawings={handleUpdateUserDrawings}/> :
+
+    (<div className="drawingCardContainer">
       <div className='drawingCard'>
         <h1>The</h1>
         <h2>{adjective}</h2>
@@ -33,15 +39,15 @@ const DrawingCard = ({ user, categories, handleUpdateSubmit, drawing, handleDele
         <button onClick={handleDelete} className='deleteButton'>
           Delete
         </button>
-        <button onClick={handleUpdateUserItem} className='editButton'>
+        <button onClick={handleShowEditForm} className='editButton'>
           Edit
         </button>
-        {isEditFormVisible && (
-          <EditDrawing user={user} categories={categories} drawing={drawing} handleUpdateUserItem={handleUpdateUserItem} handleUpdateSubmit={handleUpdateSubmit}/>
-        )}
+       
       </div>
+    </div>)}
     </div>
   );
 };
 
 export default DrawingCard;
+

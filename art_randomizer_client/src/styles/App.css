@@ -45,10 +45,10 @@
 
 /* Updated styles for the header */
 .header {
-  display: flex;  
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 70px;
+  padding: 10px 70px; /* Reduce top and bottom padding */
   background-color: #282c34;
   color: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,11 +57,12 @@
 .headerBack {
   display: flex;
   flex-direction: row;
-  justify-content: right; /* Center vertically */
-  align-items: right; /* Center horizontally */
+  justify-content: flex-end; /* Move items to the right */
+  align-items: center;
   text-align: right;
   margin-top: 200px;
-  padding: 50px; /* Add padding around the content */
+  margin-right: 50px; /* Move navbar to the right by 50px */
+  padding: 10px; /* Reduce padding around the content */
 }
 
 .linkButtons {
@@ -99,4 +100,40 @@
   background-color: rgb(128, 128, 128);
   color: white;
   margin-right: 20px;
+}
+
+.newDrawingForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Adjust the padding as needed */
+}
+
+.newDrawingH2 {
+  font-weight: bold;
+  margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formInput {
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  padding: 5px; /* Adjust the padding as needed */
+}
+
+.formButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px; /* Adjust the padding as needed */
+  border: none;
+  cursor: pointer;
+}
+
+.formButton:hover {
+  background-color: #0056b3; /* Adjust the hover color as needed */
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-// import NewDrawingForm from './NewDrawingForm';
 
 function RandomCard({ noun, adjective, verb, adverb, handleAdd }) {
 

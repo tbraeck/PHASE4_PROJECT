@@ -1,10 +1,9 @@
 import React, {useEffect, useState, useContext} from 'react'
 import DrawingCard from './DrawingCard'
-import Randomizer from './Randomizer'
 import NewUserDrawing from './NewUserDrawing'
 import { useParams } from 'react-router-dom'
 import { UserContext } from './contexts/UserContext';
-
+import './styles/CategoryCard.css';
 
 const CategoryCard = ({categories, setCategories, handleAdd}) => {
   const [category, setCategory] = useState({
@@ -23,17 +22,6 @@ useEffect(() => {
     setCategory(selectedCategory)
   }
 }, [categories, id])
-
-useEffect((user_id, drawingId) => {
-  fetch(`http://localhost:3000/user/${user_id}/drawings`)
-    .then((response) => response.json())
-    .then((data) => {
-      setUserDrawings(data);
-    })
-    .catch((error) => {
-      console.error('Error fetching user drawings:', error);
-    });
-}, [userId, drawingId]);
 
 const handleSaveDrawingToUserProfile = (drawing) => {
   fetch(`http://localhost:3000/users/${user.id}/drawings`, {
@@ -73,11 +61,12 @@ const handleDeleteClick = (user_id, drawing_id) => {
     setCategories(updatedDrawings)
     handleUpdateSubmit(id, deleteDrawing)
   })
-
   }
-
-  const handleUpdateSubmit = (drawingId, updatedDrawing) => {
-    fetch(`http://localhost:3000/users/${user.id}/drawings/${drawingId}`, {
+ 
+  const handleUpdateSubmit = (drawing_id, updatedDrawing) => {
+    console.log('Old userDrawings:', userDrawings);
+  console.log('Updated drawing:', updatedDrawing);
+    fetch(`http://localhost:3000/users/${user.id}/user_drawings/${drawing_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -86,52 +75,69 @@ const handleDeleteClick = (user_id, drawing_id) => {
     })
       .then(r => r.json())
       .then(savedDrawing => {
+        console.log(savedDrawing)
         const updatedUserDrawings = userDrawings.map(drawing =>
           drawing.id === drawingId ? savedDrawing : drawing
         );
         setUserDrawings(updatedUserDrawings);
       });
   };
-  console.log(userDrawings)
 
 const catDrawings = category.drawings.map((drawing) => (
   <div key={drawing.id}>
-<DrawingCard
-  drawing={drawing}
-  user={{ id: parsedUserId }}
-  category={category}
-  categories={categories}
-  handleDeleteClick={handleDeleteClick}
-  handleUpdateSubmit={handleUpdateSubmit}
-  handleSaveDrawingToUserProfile={handleSaveDrawingToUserProfile}
-/>
-</div>
+    <DrawingCard
+      drawing={drawing}
+      user={{ id: parsedUserId }}
+      category={category}
+      categories={categories}
+      handleDeleteClick={handleDeleteClick}
+      handleUpdateSubmit={handleUpdateSubmit}
+      handleSaveDrawingToUserProfile={handleSaveDrawingToUserProfile}
+    />
+  </div>
 ))
 
-  return (
-    <div className='categoryBox'>
+return(
+
+      <div className='categoryBox'>
       <div className='subTitle'>
-          <h1><u>Category:</u> </h1>
-          <h1><em>{category.name}</em></h1>
+        <h1>
+          <u>Category:</u>{' '}
+        </h1>
+        <div className='catName'>
+        <h1 >
+          <em>{category.name}</em>
+        </h1>
+        </div>
+       
       </div>
-      <div className='drawingList'>
-        <h2>
-          <u><em>Drawings:</em></u>
-        </h2>
-          <ol>{catDrawings}</ol>
+      <div className='grid-container'>
+        <div className='drawingList'>
+          <h2>
+            <u>
+              <em>Drawings:</em>
+            </u>
+          </h2>
+          <div className='drawingGrid'>
+            <ol>{catDrawings}</ol>
+          </div>
+         
+        </div>
+        <div className='newUserForm'>
+          <NewUserDrawing
+            categories={categories}
+            setCategories={setCategories}
+            category={category}
+            handleAdd={handleAdd}
+            user={user}
+          />
+        </div>
       </div>
-      <NewUserDrawing categories={categories} setCategories={setCategories} category={category} handleAdd={handleAdd} user={user} />
-      <div className='newResForm'>
-        <Randomizer category={category} categories={categories} setCategories={setCategories} handleAdd={handleAdd} user={user}/>
-      </div>
-      {/* {user && <UserProfile category={category} setCategories={setCategories} categories={categories} user={user} userId={user.id} />}
-      <UserDrawings user={user} handleSaveDrawingToUserProfile={handleSaveDrawingToUserProfile} /> Pass the handler */}
-    </div>
+</div>
+);
+};
 
-  )
-}
-
-export default CategoryCard
+export default CategoryCard;
 
 
 // import React from 'react';

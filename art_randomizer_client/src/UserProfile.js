@@ -4,10 +4,9 @@ import { useParams } from 'react-router-dom';
 
 import './styles/UserProfile.css';
 
-const UserProfile = ({ user, categories, handleSaveDrawing}) => {
+const UserProfile = ({ userDrawings, setUserDrawings, user, categories, handleSaveDrawing}) => {
   const {user_id} = useParams();
 
-  // console.log(userDrawings)
   return (
     <div className="userProfile">
         <h1> {user.username}'s Drawings</h1>

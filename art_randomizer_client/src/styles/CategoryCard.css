@@ -1,0 +1,49 @@
+/* CategoryCard.css */
+
+/* Container for the entire CategoryCard */
+.categoryBox {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Subtitle styling */
+  .subTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+  }
+  
+  .catName {
+    margin-left: 0px;
+  }
+  
+  /* Grid container for drawing list and new user form */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Adjust the column widths as needed */
+    gap: 20px; /* Adjust the gap between columns */
+  }
+  
+  /* Styling for the drawing list on the left */
+  .drawingList {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Styling for the new user form on the right */
+  .newUserForm {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  
+  
+  /* You can add more specific styling as needed for other elements */
+  
