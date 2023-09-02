@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './styles/DrawingCard.css';
 import EditDrawing from './EditDrawing';
-// import UserDrawings from './UserDrawings';
 
 const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories, handleUpdateSubmit, handleUpdateUserDrawings, handleDeleteClick,  handleSaveDrawingToUserProfile }) => {
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
@@ -19,7 +18,6 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories,
   const handleDelete = () => {
     handleDeleteClick(id);
   };
-// console.log(userDrawings)
   return (
 
     <div className='drawingEdit' onDoubleClick={()=> setIsEditFormVisible((isEditFormVisible)=>!isEditFormVisible)}>
@@ -33,14 +31,14 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories,
         <h2>{noun}</h2>
         <h2>{verb}</h2>
         <h2>{adverb}!</h2>
-        <button onClick={handleSave} className='saveButton'>
+        <button onClick={handleSave} className='crudButton'>
           SAVE
         </button>
-        <button onClick={handleDelete} className='deleteButton'>
-          Delete
+        <button onClick={handleDelete} className='crudButton'>
+          DELETE
         </button>
-        <button onClick={handleShowEditForm} className='editButton'>
-          Edit
+        <button onClick={handleShowEditForm} className='crudButton'>
+          EDIT
         </button>
        
       </div>

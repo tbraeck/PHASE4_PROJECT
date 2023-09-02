@@ -98,12 +98,14 @@ const catDrawings = category.drawings.map((drawing) => (
 ))
 
 return(
-
+<div className='category-container'>
       <div className='categoryBox'>
       <div className='subTitle'>
+        <div className='categoryTitle'> 
         <h1>
-          <u>Category:</u>{' '}
+          <u>CATEGORY</u>{' '}
         </h1>
+        </div>
         <div className='catName'>
         <h1 >
           <em>{category.name}</em>
@@ -113,9 +115,9 @@ return(
       </div>
       <div className='grid-container'>
         <div className='drawingList'>
-          <h2>
+          <h2 className='drawingHead'>
             <u>
-              <em>Drawings:</em>
+              <em>DRAWINGS:</em>
             </u>
           </h2>
           <div className='drawingGrid'>
@@ -133,6 +135,7 @@ return(
           />
         </div>
       </div>
+</div>
 </div>
 );
 };
