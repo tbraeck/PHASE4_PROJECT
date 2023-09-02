@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './styles/Login.css'; 
 
 const SignUpForm = ({setUser}) => {
     const [username, setUsername] = useState('')
@@ -30,37 +31,53 @@ const SignUpForm = ({setUser}) => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username </label>
-            <input 
-            id="username"
-            type='text' 
-            placeholder='username'
-            value={username}
-            onChange={(e)=> setUsername(e.target.value)}
-            />
-       
-        <label htmlFor="password"> Password </label>
-            <input
-            id="password"
-            type='text'
-            placeholder='password'
-            value={password}
-            onChange={(e)=> setPassword(e.target.value)}
-            />
+    <div className="login-page">
+      <div className="login-container">
+    <h2 className="login-tagline">Sign Up</h2>
+    <form className="login-form" onSubmit={handleSubmit}>
+      <label className="form-label" htmlFor="username">
+        Username
+      </label>
+      <input
+        id="username"
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="form-input"
+      />
+        <br></br><br></br>
 
-        <label htmlFor="password">Password Confirmation</label>
-            <input
-                type="password"
-                id="password_confirmation"
-                value={passwordConfirmation}
-                onChange={(e) => setPasswordConfirmation(e.target.value)}
-                autoComplete="current-password"
-        />
-      
-        <button type='submit' className='signup-button'> {loading ? "Loading..." : "Sign Up"} </button>
-      
+      <label className="form-label" htmlFor="password">
+        Password
+      </label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="form-input"
+      />
+
+      <label className="form-label" htmlFor="password_confirmation">
+        Password Confirmation
+      </label>
+      <input
+        id="password_confirmation"
+        type="password"
+        placeholder="Password Confirmation"
+        value={passwordConfirmation}
+        onChange={(e) => setPasswordConfirmation(e.target.value)}
+        className="form-input"
+      />
+
+      <button type="submit" className="form-button">
+        {loading ? 'Loading...' : 'Sign Up'}
+      </button>
     </form>
+  </div>
+</div>
   )
 }
 
