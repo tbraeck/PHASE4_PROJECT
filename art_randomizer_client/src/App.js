@@ -78,7 +78,7 @@ if(!user) return <Login  />
          <Route path="/categories" element={<CategoryList categories={categories}  handleUpdateItem={handleUpdateItem}  setCategories={setCategories}/> } />  
          <Route path="/categories/:id" element={<CategoryCard categories={categories}  handleUpdateItem={handleUpdateItem}  handleAdd={handleAdd} setCategories={setCategories}/>}/>
          <Route path="/categories/:id/edit" element={<CategoryCard categories={categories} setCategories={setCategories} handleAdd={handleAdd}/>}/>
-         <Route path="/users/:userId/drawings/:drawingId" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
+         <Route path="/users/:user_id/drawings/:drawing_id" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
          <Route path="/user-profile" element={user ? <UserProfile user={user}/> : <Navigate to="/" />} />
       </Routes>
       </div>

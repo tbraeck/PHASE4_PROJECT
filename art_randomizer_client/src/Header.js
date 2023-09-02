@@ -9,8 +9,8 @@ const Header = ({ handleLogout }) => {
   return (
     <div className='header'>
       <Link to='/' relative="path">
-        <img src='../ArtBanner.gif' 
-        style={{width: 800, paddingTop: 30}}
+        <img src='../DRAWINGIDEAS.gif' 
+        style={{width: 400, paddingTop: 0}}
         alt='art banner'/>
       </Link>
       <Navbar user={user} setUser={setUser} handleLogout={handleLogout}  />

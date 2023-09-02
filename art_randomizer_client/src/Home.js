@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div className='homeWelcome'>
-      <h1>Welcome to the <u>ART RANDOMIZER PAGE</u>.</h1>
+    <div className='home'>
+      <h1 className='homeWelcome'>GET ALL YOUR <br></br>DRAWING IDEAS <br></br>RIGHT <Link to='/categories' className='custom-link'><u>HERE</u></Link> .</h1>
     </div>
   )
 }

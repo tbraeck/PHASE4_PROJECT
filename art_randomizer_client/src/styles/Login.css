@@ -1,0 +1,93 @@
+/* Login.css */
+.login-page {
+    background-image: url('./5183000.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+/* Container for the entire login form */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tagline */
+  .login-tagline {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Subtitle */
+  .login-taglineH3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form container */
+  .login-form-container {
+    margin-top: 20px;
+  }
+  
+  /* Account question */
+  .login-account-question {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Toggle button */
+  .login-toggle-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-toggle-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Form input styles (you can customize these) */
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Form submit button styles (you can customize these) */
+  .form-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+  
