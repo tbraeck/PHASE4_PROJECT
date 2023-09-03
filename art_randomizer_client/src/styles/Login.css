@@ -1,6 +1,4 @@
-/* Login.css */
 
-/* Global styles */
 .login-page {
   background-image: url('./5183000.jpg');
   background-size: cover;
@@ -12,7 +10,6 @@
   flex-direction: column;
 }
 
-/* Container for the entire login form */
 .login-container {
   max-width: 400px;
   margin: 0 auto;
@@ -26,7 +23,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Typography */
 .login-tagline {
   font-size: 24px;
   margin-bottom: 10px;
@@ -39,13 +35,11 @@
   text-align: right;
 }
 
-/* Form container */
 .login-form-container {
   margin-top: 20px;
   margin: 20px;
 }
 
-/* Form styles */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -53,14 +47,12 @@
   justify-content: right;
 }
 
-/* Account question */
 .login-account-question {
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
 }
 
-/* Toggle button */
 .login-toggle-button {
   display: block;
   margin: 10px auto;
@@ -78,7 +70,6 @@
   background-color: #0056b3;
 }
 
-/* Form input styles (you can customize these) */
 .form-input {
   width: 100%;
   padding: 10px;
@@ -88,7 +79,6 @@
   font-size: 16px;
 }
 
-/* Form submit button styles (you can customize these) */
 .form-button {
   width: 100%;
   padding: 10px 20px;
