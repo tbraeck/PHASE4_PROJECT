@@ -4,10 +4,10 @@ class UserDrawingsController < ApplicationController
     skip_before_action :authorize
 
     # GET /users/:user_id/user_drawings
-    def index
-      @user_drawings = @user.user_drawings
-      render json: @user_drawings
-    end
+    # def index
+    #   @user_drawings = @user.user_drawings
+    #   render json: @user_drawings
+    # end
     
     # GET /users/:user_id/user_drawings/:id
     def show
