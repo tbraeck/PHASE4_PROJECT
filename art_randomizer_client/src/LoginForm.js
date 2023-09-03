@@ -6,17 +6,17 @@ const LoginForm = ({ setUser}) => {
   const [password, setPassword] = useState('');
 
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-  //   fetch('http://localhost:3000/login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ username, password }),
-  //   })
-  //   .then((res) => {
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    })
+    .then((res) => {
       if (res.ok) {
         res.json().then((user) => setUser(user));
       }
