@@ -50,6 +50,7 @@ const handleUpdateItem = (updatedDrawing) => {
 }
 
 if(!user) return <Login  />
+console.log(username, password)
 
 return (
     <div className="App">
