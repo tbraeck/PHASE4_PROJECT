@@ -20,13 +20,13 @@ const [categories, setCategories] = useState({
 const {user, setUser} = useContext(UserContext);
 
 
-  useEffect(()=> {
-    fetch("http://localhost:3000/categories")
-      .then((res)=> res.json())
-      .then((data) => setCategories(data))
-      .catch((error) => console.error('Error fetching categories:', error));
+  // useEffect(()=> {
+  //   fetch("http://localhost:3000/categories")
+  //     .then((res)=> res.json())
+  //     .then((data) => setCategories(data))
+  //     .catch((error) => console.error('Error fetching categories:', error));
 
-  }, [])
+  // }, [])
   
   const handleAdd = (newDrawing) => {
     const newDrawingArray = [...categories, newDrawing]
