@@ -20,13 +20,13 @@ const [categories, setCategories] = useState({
 const {user, setUser} = useContext(UserContext);
 
 
-  // useEffect(()=> {
-  //   fetch("http://localhost:3000/categories")
-  //     .then((res)=> res.json())
-  //     .then((data) => setCategories(data))
-  //     .catch((error) => console.error('Error fetching categories:', error));
+  useEffect(()=> {
+    fetch("http://localhost:3000/categories")
+      .then((res)=> res.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error('Error fetching categories:', error));
 
-  // }, [])
+  }, [])
   
   const handleAdd = (newDrawing) => {
     const newDrawingArray = [...categories, newDrawing]
@@ -56,14 +56,14 @@ return (
       <Header handleLogout={handleLogout} />
     <div>
     </div>
-        <Routes>
+        {/* <Routes>
             <Route  exact path="/" element={<Home/>}/>
             <Route path="/categories" element={<CategoryList categories={categories}  handleUpdateItem={handleUpdateItem}  setCategories={setCategories}/> } />  
             <Route path="/categories/:id" element={<CategoryCard categories={categories}  handleUpdateItem={handleUpdateItem}  handleAdd={handleAdd} setCategories={setCategories}/>}/>
             <Route path="/categories/:id/edit" element={<CategoryCard categories={categories} setCategories={setCategories} handleAdd={handleAdd}/>}/>
             <Route path="/users/:user_id/drawings/:drawing_id" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
             <Route path="/user-profile" element={user ? <UserProfile user={user}/> : <Navigate to="/" />} />
-        </Routes>
+        </Routes> */}
       </div>
   );
 }
