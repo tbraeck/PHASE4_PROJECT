@@ -5,7 +5,7 @@ const LoginForm = ({ setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-
+  console.log(username, password)
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -26,8 +26,6 @@ const LoginForm = ({ setUser}) => {
   return (
     <div>
       <h2>Login</h2>
-      <h2>Login</h2>
-
       <form onSubmit={handleSubmit}>
         <input 
         type='username'
