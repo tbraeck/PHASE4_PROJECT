@@ -11,7 +11,7 @@ const Login = () => {
   return (
     <div className='login-page'>
     <div className="login-container">
-      <h2 className="login-tagline">Welcome to Drawing Ideas Now!</h2>
+      <h2 className="login-tagline">ppppp!</h2>
       <h3 className='login-taglineH3'>A place to find and create ideas for what to draw every day.</h3>
       <div className="login-form-container">
         {showLogin ? (
