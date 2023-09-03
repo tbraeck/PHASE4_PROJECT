@@ -46,11 +46,11 @@ class UserDrawingsController < ApplicationController
     end
     
     
-  #   def set_user_drawing
-  #     @user_drawing = @user.user_drawings.find(params[:id])
-  #   end
+    def set_user_drawing
+      @user_drawing = @user.user_drawings.find(params[:id])
+    end
     
-  #   def user_drawing_params
-  #     params.require(:user_drawing).permit(:adjective, :noun, :verb, :adverb)
-  #   end
-  # end
+    def user_drawing_params
+      params.require(:user_drawing).permit(:adjective, :noun, :verb, :adverb)
+    end
+  end
