@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import LoginForm from './LoginForm';
 import SignUpForm from "./SignUpForm";
 import { UserContext } from './contexts/UserContext';
-// import './styles/Login.css'; 
+import './styles/Login.css'; 
 
 const Login = () => {
   const [showLogin, setShowLogin] = useState(true);

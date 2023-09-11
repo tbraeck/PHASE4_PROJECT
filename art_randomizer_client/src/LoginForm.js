@@ -31,14 +31,16 @@ const LoginForm = ({ setUser}) => {
         placeholder='Username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        className='form-input'
         />
         <input
         type='password'
         placeholder='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        className='form-input'
         />
-        <button type='submit'>
+        <button className='form-button' type='submit'>
           Login
         </button>
       </form>

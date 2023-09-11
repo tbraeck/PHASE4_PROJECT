@@ -1,75 +1,103 @@
 /* CategoryCard.css */
 .category-container {
-  /* Add container styles */
   background-image: url('./back3.jpg');
-  background-size: cover; /* Cover the entire container with the background image */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
-  background-position: center center; /* Center the background image both horizontally and vertically */
-  background-attachment: fixed; /* Fix the background image in place */
-  padding: 20px; /* Add padding */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  padding: 20px;
 }
-/* Container for the entire CategoryCard */
+
 .categoryBox {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    
-  }
-  
-  /* Subtitle styling */
-  .subTitle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0px;
-    font-size: 15px;
-    width: fit-content;
-    background-color: #7eecfa; 
-    margin: 20px;/* Change the color code to the desired background color */
-    padding: 10px; /* Add padding to create space around the content */
-    border-radius: 5px; /* Add rounded corners to the box */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-  }
-  
-  .categoryTitle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .catName {
-    margin-top: 0px;
-    margin-left: 0px;
-  }
-  
-  .drawingHead{
-    font-size: 40px;
-  }
-  /* Grid container for drawing list and new user form */
-  .grid-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr; /* Adjust the column widths as needed */
-    gap: 20px; /* Adjust the gap between columns */
-  }
-  
-  /* Styling for the drawing list on the left */
-  .drawingList {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-left: 20px;
-  }
-  
-  /* Styling for the new user form on the right */
-  .newUserForm {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  
-  
-  /* You can add more specific styling as needed for other elements */
-  
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff; /* Set a background color */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 18px; /* Increase the font size for better visibility */
+  width: fit-content;
+  background-color: #7eecfa;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #333; /* Set text color */
+}
+
+.categoryTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* Add top margin */
+}
+
+.catName {
+  margin-top: 10px; /* Add top margin */
+  font-size: 24px; /* Increase the font size for category name */
+}
+
+.drawingGrid {
+  grid-row: span;
+}
+/* Add this CSS for the drawings */
+/* Style for the container of drawings */
+/* Style for the container of drawings */
+.catDrawings {
+  list-style: none;
+  grid-row: auto;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flexbox to make the drawings display horizontally */
+  flex-wrap: wrap; /* Allow wrapping to the next row if there are too many drawings */
+  justify-content: space-between; /* Add spacing between the drawings */
+}
+
+/* Style for each individual drawing card */
+.catDrawings li {
+  flex-basis: calc(33.33% - 10px); /* Adjust the width of each drawing card (33.33% for three cards per row) */
+  margin-bottom: 10px; /* Add margin between drawing cards */
+}
+
+
+
+.drawingHead {
+  font-size: 32px; /* Increase the font size for drawing heading */
+  color: #333; /* Set text color */
+  text-decoration: underline;
+}
+
+.grid-container {
+  display: grid;
+grid-row: auto;  
+grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.drawingList {
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  grid-row: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.newUserForm {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff; /* Set a background color */
+  box-shadow: 0px 2px 4px rgba(176, 75, 75, 0.2);
+}
+
+/* Add more specific styling as needed for other elements */

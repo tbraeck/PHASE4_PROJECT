@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import './styles/Login.css'; 
+import './styles/Login.css'; 
 
 const SignUpForm = ({setUser}) => {
     const [username, setUsername] = useState('')
@@ -31,11 +31,11 @@ const SignUpForm = ({setUser}) => {
     }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-    <h2 className="login-tagline">Sign Up</h2>
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label className="form-label" htmlFor="username">
+    <div >
+      <div >
+    <h2 >Sign Up</h2>
+    <form  onSubmit={handleSubmit}>
+      <label  htmlFor="username">
         Username
       </label>
       <input
@@ -44,11 +44,11 @@ const SignUpForm = ({setUser}) => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="form-input"
+        className='form-input'
       />
         <br></br><br></br>
 
-      <label className="form-label" htmlFor="password">
+      <label  htmlFor="password">
         Password
       </label>
       <input
@@ -57,10 +57,11 @@ const SignUpForm = ({setUser}) => {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="form-input"
+        className='form-input'
+
       />
 
-      <label className="form-label" htmlFor="password_confirmation">
+      <label  htmlFor="password_confirmation">
         Password Confirmation
       </label>
       <input
@@ -69,10 +70,12 @@ const SignUpForm = ({setUser}) => {
         placeholder="Password Confirmation"
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
-        className="form-input"
+        className='form-input'
+
       />
 
-      <button type="submit" className="form-button">
+      <button         className='form-button'
+type="submit" >
         {loading ? 'Loading...' : 'Sign Up'}
       </button>
     </form>

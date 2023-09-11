@@ -64,8 +64,6 @@ const handleDeleteClick = (user_id, drawing_id) => {
   }
  
   const handleUpdateSubmit = (drawing_id, updatedDrawing) => {
-    console.log('Old userDrawings:', userDrawings);
-  console.log('Updated drawing:', updatedDrawing);
     fetch(`http://localhost:3000/users/${user.id}/user_drawings/${drawing_id}`, {
       method: 'PATCH',
       headers: {
@@ -98,45 +96,43 @@ const catDrawings = category.drawings.map((drawing) => (
 ))
 
 return(
-<div className='category-container'>
-      <div className='categoryBox'>
-      <div className='subTitle'>
-        <div className='categoryTitle'> 
-        <h1>
-          <u>CATEGORY</u>{' '}
-        </h1>
-        </div>
-        <div className='catName'>
-        <h1 >
-          <em>{category.name}</em>
-        </h1>
-        </div>
-       
-      </div>
-      <div className='grid-container'>
-        <div className='drawingList'>
-          <h2 className='drawingHead'>
-            <u>
-              <em>DRAWINGS:</em>
-            </u>
-          </h2>
-          <div className='drawingGrid'>
-            <ol>{catDrawings}</ol>
+  <div className="category-container">
+        <div className="categoryBox">
+          <div className="subTitle">
+            {/* <div className="categoryTitle">
+              <h1>
+                <u>CATEGORY</u>
+              </h1>
+            </div> */}
+            <div className="catName">
+              <h1>
+                <em>{category.name}</em>
+              </h1>
+            </div>
           </div>
-         
-        </div>
-        <div className='newUserForm'>
-          <NewUserDrawing
-            categories={categories}
-            setCategories={setCategories}
-            category={category}
-            handleAdd={handleAdd}
-            user={user}
-          />
+          <div className="grid-container">
+            <div className="drawingList">
+              {/* <h2 className="drawingHead">
+                <u>
+                  <em>DRAWINGS:</em>
+                </u>
+              </h2> */}
+              <div className="drawingGrid">
+                <ul className="catDrawings">{catDrawings}</ul> 
+              </div>
+            </div>
+            <div className="newUserForm">
+              <NewUserDrawing
+                categories={categories}
+                setCategories={setCategories}
+                category={category}
+                handleAdd={handleAdd}
+                user={user}
+              />
+            </div>
+          </div>
         </div>
       </div>
-</div>
-</div>
 );
 };
 

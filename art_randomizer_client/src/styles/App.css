@@ -76,6 +76,7 @@
 }
 
 /* Add background image properties to .cat-page */
+/* Apply this CSS to your cat-page class */
 .cat-page {
   background-image: url('./back2.jpg'); /* Replace with the actual image path */
   background-size: cover;
@@ -84,6 +85,7 @@
   /* Other CSS styles for your cat-page class */
 }
 
+/* Apply this CSS to your categoriesBox class */
 .categoriesBox {
   display: flex;
   flex-direction: column;
@@ -92,22 +94,25 @@
   height: 60vh; /* Make the container take the full viewport height */
 }
 
+/* Apply this CSS to your categories class */
 .categories {
   font-size: 46px; /* Adjust the font size as needed */
   color: #282c34;
-  margin:0px;
+  margin: 0;
   justify-content: space-between; /* Add margin to create spacing */
   text-align: center; /* Center the text horizontally */
 }
 
+/* Apply this CSS to your categoryLinks class */
 .categoryLinks {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 50px;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
+/* Apply this CSS to the links within the categoryLinks class */
 .categoryLinks a {
   color: rgb(221, 55, 26);
   text-decoration: none;
@@ -115,11 +120,13 @@
   transition: color 0.3s, font-size 0.3s, text-shadow 0.3s; /* Add text-shadow to the transition */
 }
 
+/* Apply this CSS to the links within the categoryLinks class when hovered */
 .categoryLinks a:hover {
   color: white;
   font-size: 38px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text-shadow for outline effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text-shadow for an outline effect */
 }
+
 
 
 
