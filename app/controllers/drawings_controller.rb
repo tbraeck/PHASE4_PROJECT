@@ -31,7 +31,7 @@ class DrawingsController < ApplicationController
 
   private
    
-    def find_drawing
+  def find_drawing
       Drawing.find(params[:id])
   end
 

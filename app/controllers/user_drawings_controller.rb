@@ -16,13 +16,15 @@ class UserDrawingsController < ApplicationController
     
     # POST /users/:user_id/user_drawings
     def create
-      @user_drawing = @user.user_drawings.create(user_drawing_params)
+      @user_drawing = @user.user_drawings.create!(user_drawing_params)
       if @user_drawing.save
         render json: @user_drawing, status: :created
       else
         render json: @user_drawing.errors, status: :unprocessable_entity
       end
     end
+
+    
     
     # PATCH/PUT /users/:user_id/user_drawings/:id
     def update

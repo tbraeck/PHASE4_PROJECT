@@ -55,3 +55,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_223415) do
 
   add_foreign_key "user_drawings", "users"
 end
+

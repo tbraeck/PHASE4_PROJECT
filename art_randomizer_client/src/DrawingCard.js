@@ -4,6 +4,7 @@ import EditDrawing from './EditDrawing';
 
 const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories, handleUpdateSubmit, handleUpdateUserDrawings, handleDeleteClick,  handleSaveDrawingToUserProfile }) => {
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const { id, adjective, noun, verb, adverb } = drawing;
 
@@ -13,7 +14,11 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories,
 
   const handleSave = () => {
     handleSaveDrawingToUserProfile(drawing);
-  };
+    setIsSaved(true)
+
+    alert('Item has been saved to your profile!');
+
+  };  
 
   const handleDelete = () => {
     handleDeleteClick(id);
@@ -21,8 +26,19 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories,
   return (
 
     <div className='drawingEdit' onDoubleClick={()=> setIsEditFormVisible((isEditFormVisible)=>!isEditFormVisible)}>
-    {isEditFormVisible? 
-      <EditDrawing user={user} categories={categories} drawing={drawing} handleShowEditForm={handleShowEditForm} userDrawings={userDrawings} setUserDrawings={setUserDrawings} handleUpdateSubmit={handleUpdateSubmit} isEditFormVisible={isEditFormVisible} setIsEditFormVisible={setIsEditFormVisible} handleUpdateUserDrawings={handleUpdateUserDrawings}/> :
+    {isEditFormVisible ? 
+      <EditDrawing 
+      user={user} 
+      categories={categories} 
+      drawing={drawing} 
+      handleShowEditForm={handleShowEditForm} 
+      userDrawings={userDrawings} 
+      setUserDrawings={setUserDrawings}   
+      handleUpdateSubmit={handleUpdateSubmit} 
+      isEditFormVisible={isEditFormVisible} 
+      setIsEditFormVisible={setIsEditFormVisible} 
+      handleUpdateUserDrawings={handleUpdateUserDrawings}
+      /> :
 
     (<div className="drawingCardContainer">
       <div className='drawingCard'>
@@ -31,9 +47,12 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, categories,
         <h2>{noun}</h2>
         <h2>{verb}</h2>
         <h2>{adverb}!</h2>
-        <button onClick={handleSave} className='crudButton'>
-          SAVE
-        </button>
+        <div>
+          <button onClick={handleSave} className='crudButton'>
+            SAVE
+          </button>
+            {isSaved && <p>Item has been saved to your profile!</p>}
+        </div>
         <button onClick={handleDelete} className='crudButton'>
           DELETE
         </button>
