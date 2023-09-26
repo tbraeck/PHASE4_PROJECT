@@ -28,7 +28,7 @@ const {user, setUser} = useContext(UserContext);
 
   }, [])
   
-  const handleAdd = (newDrawing) => {
+const handleAdd = (newDrawing) => {
     const newDrawingArray = [...categories, newDrawing]
     setCategories(newDrawingArray)
     }
