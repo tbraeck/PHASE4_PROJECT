@@ -7,6 +7,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
     verb: '',
     adverb: '',
   });
+  const [errors, setErrors] = useState({});
 
   const { adjective, noun, verb, adverb } = drawingFormData;
 
@@ -17,6 +18,31 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
 
   const handleSubmitDrawing = (e) => {
     e.preventDefault();
+
+    const formErrors = {};
+    if (!adjective.trim()) {
+      formErrors.adjective = 'Adjective is required.';
+    }
+    if (!noun.trim()) {
+      formErrors.noun = 'Noun is required.';
+    }
+    if (!verb.trim()) {
+      formErrors.verb = 'Verb is required.';
+    }
+    if (!adverb.trim()) {
+      formErrors.adverb = 'Adverb is required.';
+    }
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
+      return; 
+    }
+
+    setErrors({});
 
     const newDrawingData = {
       ...drawingFormData,
@@ -41,6 +67,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
               }
             : categoryItem
         );
+        console.log(updatedCategories)
         setCategories(updatedCategories);
         setDrawingFormData({
           adjective: '',
@@ -67,7 +94,10 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       placeholder="adjective"
       value={adjective}
       onChange={handleDrawingChange}
+      
     />
+            {errors.adjective && <p className="error">{errors.adjective}</p>}
+
     <input
       className="formInput"
       type="text"
@@ -76,6 +106,8 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={noun}
       onChange={handleDrawingChange}
     />
+            {errors.noun && <p className="error">{errors.noun}</p>}
+
     <input
       className="formInput"
       type="text"
@@ -84,6 +116,8 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={verb}
       onChange={handleDrawingChange}
     />
+            {errors.verb && <p className="error">{errors.verb}</p>}
+
     <input
       className="formInput"
       type="text"
@@ -92,6 +126,8 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={adverb}
       onChange={handleDrawingChange}
     />
+            {errors.adverb && <p className="error">{errors.adverb}</p>}
+
     <button className="formButton" type="submit">
       ADD
     </button>

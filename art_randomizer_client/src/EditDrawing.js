@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisible, setIsEditFormVisible }) {
   const [drawingBody, setDrawingBody] = useState({
@@ -8,8 +8,19 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
     adverb: drawing.adverb,
         drawing_id: drawing.drawing_id
     })
-   
-    const {adjective, noun, verb, adverb} = drawingBody;
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+      // When the drawing prop changes (initial load or update), update the form data
+      setDrawingBody({
+        adjective: drawing.adjective,
+        noun: drawing.noun,
+        verb: drawing.verb,
+        adverb: drawing.adverb,
+      });
+    }, [drawing]);
+
+    const { adjective, noun, verb, adverb } = drawingBody;
 
     const handleDrawingChange = (e) => {
         let name = e.target.name
@@ -19,6 +30,17 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
  
     const handleSubmitEdit = (e) => {
       e.preventDefault();
+
+      const formErrors = {};
+      if (!adjective.trim()) formErrors.adjective = 'Adjective is required.';
+      if (!noun.trim()) formErrors.noun = 'Noun is required.';
+      if (!verb.trim()) formErrors.verb = 'Verb is required.';
+      if (!adverb.trim()) formErrors.adverb = 'Adverb is required.';
+
+      if (Object.keys(formErrors).length > 0) {
+        return;
+      }
+  
       let drawing_id = drawing.id;
       let user_id = user.id;
 
@@ -31,7 +53,7 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
       })
         .then((response) => response.json())
         .then((updatedDrawing) => {
-          console.log(updatedDrawing)
+          console.log(updatedDrawing) 
           handleUpdateUserDrawings(updatedDrawing);
           setIsEditFormVisible(!isEditFormVisible);
         })
@@ -51,6 +73,8 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter title..."
       />
+            {errors.adjective && <p className="error">{errors.adjective}</p>}
+
        <input
        className='formInput'
         type="text"
@@ -59,6 +83,8 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter noun..."
       />
+            {errors.noun && <p className="error">{errors.noun}</p>}
+
        <input
        className='formInput'
         type="text"
@@ -67,6 +93,8 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter verb..."
       />
+            {errors.verb && <p className="error">{errors.verb}</p>}
+
        <input
        className='formInput'
         type="text"
@@ -75,6 +103,8 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter adverb..."
       />
+            {errors.adverb && <p className="error">{errors.adverb}</p>}
+
       <button className='formButton' type="submit">Update</button>
     </form> 
 );

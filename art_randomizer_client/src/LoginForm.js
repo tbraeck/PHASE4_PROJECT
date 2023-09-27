@@ -4,6 +4,8 @@ import React, {useState} from 'react'
 const LoginForm = ({ setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,13 +20,22 @@ const LoginForm = ({ setUser}) => {
     .then((res) => {
       if (res.ok) {
         res.json().then((user) => setUser(user));
+      } else {
+        setError('Login failed. Please check your username and password.');
+        setTimeout(() => {
+          setError(null);
+        }, 3000); 
       }
     })
+    .catch((error) => {
+      setError('An error occurred while trying to log in. Please try again later.');
+    });
   }
   
   return (
     <div>
       <h2>Login</h2>
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input 
         type='username'

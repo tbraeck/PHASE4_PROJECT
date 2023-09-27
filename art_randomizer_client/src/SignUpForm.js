@@ -6,6 +6,8 @@ const SignUpForm = ({setUser}) => {
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null); // Add error state
+
     
 
     const handleSubmit = (e) => {
@@ -26,15 +28,23 @@ const SignUpForm = ({setUser}) => {
         .then((r) => {
             setLoading(false);
             if (r.ok) {
-                r.json().then((user) => setUser(user))
-            } 
-        })
+              r.json().then((user) => setUser(user));
+            } else {
+              r.json().then((errorData) => setError(errorData.message));
+            }
+          })
+          .catch((error) => {
+            setLoading(false);
+            setError('An error occurred while signing up. Please try again later.');
+          });
     }
 
   return (
     <div >
       <div >
           <h2 >Sign Up</h2>
+          {error && <p className="error-message">{error}</p>} {/* Display error message */}
+
               <form  onSubmit={handleSubmit}>
                 <label  htmlFor="username">
                   Username
