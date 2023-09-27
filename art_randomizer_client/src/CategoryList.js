@@ -2,10 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const CategoryList = ({categories}) => {
-   console.log(categories)
-
-   
-
    const categoryItems = categories.map((category) => (
         <div key={category.id}>
             <h1>

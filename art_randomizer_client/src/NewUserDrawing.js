@@ -67,6 +67,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
               }
             : categoryItem
         );
+
         console.log(updatedCategories)
         setCategories(updatedCategories);
         setDrawingFormData({
@@ -81,7 +82,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       });
   };
 
-  return (
+return (
   <div className="newDrawingForm">
   <h2 className="newDrawingH2">
     <b>N</b>&nbsp;<b>e</b>&nbsp;<b>w</b>&nbsp;&nbsp;&nbsp;<b>D</b>&nbsp;<b>r</b>&nbsp;<b>a</b>&nbsp;<b>w</b>&nbsp;<b>i</b>&nbsp;<b>n</b>&nbsp;<b>g</b>&nbsp;<b>s</b>&nbsp;
@@ -96,8 +97,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       onChange={handleDrawingChange}
       
     />
-            {errors.adjective && <p className="error">{errors.adjective}</p>}
-
+        {errors.adjective && <p className="error-message">{errors.adjective}</p>}
     <input
       className="formInput"
       type="text"
@@ -106,8 +106,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={noun}
       onChange={handleDrawingChange}
     />
-            {errors.noun && <p className="error">{errors.noun}</p>}
-
+          {errors.noun && <p className="error-message">{errors.noun}</p>}
     <input
       className="formInput"
       type="text"
@@ -116,8 +115,7 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={verb}
       onChange={handleDrawingChange}
     />
-            {errors.verb && <p className="error">{errors.verb}</p>}
-
+          {errors.verb && <p className="error-message">{errors.verb}</p>}
     <input
       className="formInput"
       type="text"
@@ -126,14 +124,12 @@ const NewUserDrawing = ({ category, categories, setCategories, user }) => {
       value={adverb}
       onChange={handleDrawingChange}
     />
-            {errors.adverb && <p className="error">{errors.adverb}</p>}
-
+          {errors.adverb && <p className="error-message">{errors.adverb}</p>}
     <button className="formButton" type="submit">
       ADD
     </button>
   </form>
 </div>
-
   );
 };
 

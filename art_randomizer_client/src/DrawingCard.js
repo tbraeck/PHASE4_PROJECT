@@ -6,20 +6,33 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, isUserProfi
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [error, setError] = useState(null); 
+  const [isSavedMessageVisible, setIsSavedMessageVisible] = useState(false);
 
-  const { id, adjective, noun, verb, adverb } = drawing;
+const hideSavedMessage = () => {
+  setIsSavedMessageVisible(false);
+};
+
+  const { adjective, noun, verb, adverb } = drawing;
 
   const handleShowEditForm = () => {
     setIsEditFormVisible(true);
   };
 
   const handleSave = () => {
-    if (isUserProfile) {
+    if (!isUserProfile) {
       setError('Saving is not allowed on the user profile page.');
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
     } else {
       handleSaveDrawingToUserProfile(drawing);
       setIsSaved(true);
-      alert('Item has been saved to your profile!');
+      setIsSavedMessageVisible(true); // Show the message
+  
+      setTimeout(() => {
+        setIsSaved(false);
+        hideSavedMessage(); // Hide the message after 3 seconds
+      }, 3000);
     }
   };
 
@@ -43,6 +56,7 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, isUserProfi
       <EditDrawing 
       user={user} 
       categories={categories} 
+      isSaved={isSaved}
       drawing={drawing} 
       handleShowEditForm={handleShowEditForm} 
       userDrawings={userDrawings} 
@@ -60,29 +74,46 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, isUserProfi
         <h2>{noun}</h2>
         <h2>{verb}</h2>
         <h2>{adverb}!</h2>
-        <div>
+        <div className="error-message">
           <button onClick={handleSave} className='crudButton'>
             SAVE
           </button>
-            {isSaved && <p>Item has been saved to your profile!</p>}
-        </div>
+          {isSavedMessageVisible && (
+  <p>Item has been saved to your profile!</p>
+)}        </div>
 
         {!isUserProfile ? (
               <button onClick={handleShowEditForm} className="crudButton">
               EDIT
             </button>
             ) : (
-              <button onClick={() => setError('Editing is not allowed outside user profile page.')} className="crudButton">
+              <button
+              onClick={() => {
+                setError('Editing is not allowed outside user profile page.');
+                setTimeout(() => {
+                  setError(null);
+                }, 3000); 
+              }}
+              className="crudButton"
+            >
               EDIT
             </button>
             )}
 
             {!isUserProfile ? (
             <button onClick={handleDelete} className="crudButton">
-            DELETE
-          </button>
+              DELETE
+            </button>
             ) : (
-              <button onClick={() => setError('Deleting is not allowed outside the user profile page.')} className="crudButton">
+              <button
+              onClick={() => {
+                setError('Deleting is not allowed outside user profile page.');
+                setTimeout(() => {
+                  setError(null);
+                }, 3000); 
+              }}
+              className="crudButton"
+            >
               DELETE
             </button>
                 
@@ -90,7 +121,7 @@ const DrawingCard = ({ drawing, userDrawings, setUserDrawings, user, isUserProfi
           </div>
         </div>
       )}
-      {error && <p>{error}</p>}
+            {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

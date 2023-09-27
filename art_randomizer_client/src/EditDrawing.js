@@ -11,7 +11,6 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-      // When the drawing prop changes (initial load or update), update the form data
       setDrawingBody({
         adjective: drawing.adjective,
         noun: drawing.noun,
@@ -31,13 +30,18 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
     const handleSubmitEdit = (e) => {
       e.preventDefault();
 
-      const formErrors = {};
+    const formErrors = {};
       if (!adjective.trim()) formErrors.adjective = 'Adjective is required.';
       if (!noun.trim()) formErrors.noun = 'Noun is required.';
       if (!verb.trim()) formErrors.verb = 'Verb is required.';
       if (!adverb.trim()) formErrors.adverb = 'Adverb is required.';
 
+      setErrors(formErrors); 
+
       if (Object.keys(formErrors).length > 0) {
+        setTimeout(() => {
+          setErrors({}); 
+        }, 3000);
         return;
       }
   
@@ -73,7 +77,7 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter title..."
       />
-            {errors.adjective && <p className="error">{errors.adjective}</p>}
+            {errors.adjective && <p className="error-message">{errors.adjective}</p>}
 
        <input
        className='formInput'
@@ -83,7 +87,7 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter noun..."
       />
-            {errors.noun && <p className="error">{errors.noun}</p>}
+            {errors.noun && <p className="error-message">{errors.noun}</p>}
 
        <input
        className='formInput'
@@ -93,7 +97,7 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter verb..."
       />
-            {errors.verb && <p className="error">{errors.verb}</p>}
+            {errors.verb && <p className="error-message">{errors.verb}</p>}
 
        <input
        className='formInput'
@@ -103,7 +107,7 @@ function EditDrawing({  user, drawing, handleUpdateUserDrawings, isEditFormVisib
         onChange={handleDrawingChange}
         placeholder="Enter adverb..."
       />
-            {errors.adverb && <p className="error">{errors.adverb}</p>}
+            {errors.adverb && <p className="error-message">{errors.adverb}</p>}
 
       <button className='formButton' type="submit">Update</button>
     </form> 

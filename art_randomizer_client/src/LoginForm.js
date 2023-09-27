@@ -6,8 +6,7 @@ const LoginForm = ({ setUser}) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault()
 
     fetch('http://localhost:3000/login', {
@@ -38,18 +37,18 @@ const LoginForm = ({ setUser}) => {
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input 
-        type='username'
-        placeholder='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className='form-input'
+          type='username'
+          placeholder='Username'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className='form-input'
         />
         <input
-        type='password'
-        placeholder='Password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className='form-input'
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className='form-input'
         />
         <button className='form-button' type='submit'>
           Login

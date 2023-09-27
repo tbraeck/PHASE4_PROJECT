@@ -43,7 +43,6 @@ const UserDrawings = ({ user, handleSaveDrawingToUserProfile }) => {
       });
   };
   
-
 const handleUpdateUserDrawings = (updatedDrawing) => {
   setUserDrawings((prevUserDrawings) => {
     const updatedUserDrawings = prevUserDrawings.map((drawing) =>

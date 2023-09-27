@@ -11,12 +11,10 @@ const CategoryCard = ({ categories, setCategories, handleAdd }) => {
   });
   const [userDrawings, setUserDrawings] = useState([])
   const { user } = useContext(UserContext);
-  const { id, username} = useParams();
+  const { id} = useParams();
 
-
-  const isUserProfile = user.username === username
-
-
+  const isUserProfile = user.username !== category.name
+  
   useEffect(() => {
     const selectedCategory = categories.find(cat => cat.id === parseInt(id));
     if (selectedCategory) {
