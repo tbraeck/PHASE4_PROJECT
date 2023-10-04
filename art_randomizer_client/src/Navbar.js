@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const Navbar = ({ user, handleLogout}) => {
 
   const handleLogoutClick = () => {
-    fetch("http://localhost:3000/logout", {
+    fetch("/logout", {
       method: "DELETE",
     })
     .then((r)=> {

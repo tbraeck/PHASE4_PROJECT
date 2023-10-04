@@ -9,7 +9,6 @@ const CategoryList = ({categories}) => {
             <h1>
                 <Link to={`/categories/${category.id}`}>
                     {category.name}
-                  
                 </Link>
             </h1>
         </div>

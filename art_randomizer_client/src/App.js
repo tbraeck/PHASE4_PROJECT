@@ -21,7 +21,7 @@ const {user, setUser} = useContext(UserContext);
 
 
   useEffect(()=> {
-    fetch("http://localhost:3000/categories")
+    fetch("/categories")
       .then((res)=> res.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error('Error fetching categories:', error));

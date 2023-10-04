@@ -3,7 +3,7 @@ import UserDrawings from './UserDrawings';
 import { useParams } from 'react-router-dom';
 
 import './styles/UserProfile.css';
-
+  
 const UserProfile = ({ user, categories, handleSaveDrawing}) => {
   const {user_id} = useParams();
 

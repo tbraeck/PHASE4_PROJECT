@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
   skip_before_action :authorize
 
-  def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
-    render json: user, status: :created
+
+  def index 
+    users = User.all
+    render json: users
   end
 
   
   def create
-    user = User.create!(user_params)
+    user = User.new(user_params)
 
     if user.save
       session[:user_id] = user.id
@@ -18,8 +18,9 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  
+
   def show
+    @current_user = User.find(params[:id])
     render json: @current_user
   end
 

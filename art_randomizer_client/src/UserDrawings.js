@@ -6,7 +6,7 @@ const UserDrawings = ({ user, handleSaveDrawingToUserProfile }) => {
   const [userDrawings, setUserDrawings] = useState([])
  
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${user.id}/drawings`)
+    fetch(`/users/${user.id}/user_drawings`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -23,7 +23,7 @@ const UserDrawings = ({ user, handleSaveDrawingToUserProfile }) => {
   }, [user.id]);
 
   const handleDelete = (drawingId) => {
-    fetch(`http://localhost:3000/users/${user.id}/user_drawings/${drawingId}`, {
+    fetch(`/users/${user.id}/user_drawings/${drawingId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
