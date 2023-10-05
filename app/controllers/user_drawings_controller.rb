@@ -15,21 +15,15 @@ class UserDrawingsController < ApplicationController
 
     def create
       @user_drawing = @current_user.user_drawings.create!(user_drawing_params)
-      if @user_drawing.save
         render json: @user_drawing, status: :created
-      else
-        render json: { errors: @user_drawing.errors.full_messages }, status: :unprocessable_entity
-      end
+     
     end
     
     
     def update
       @user_drawing = set_user_drawing
-      if @user_drawing.update!(user_drawing_params)
-        render json: @user_drawing, status: :ok
-      else
-        render json: { errors: @user_drawing.errors.full_messages }, status: :unprocessable_entity
-      end
+      @user_drawing.update!(user_drawing_params)
+      render json: @user_drawing, status: :ok
     end
      
     def destroy

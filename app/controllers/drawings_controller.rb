@@ -13,21 +13,14 @@ class DrawingsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    if drawing = user.drawings.create!(drawing_params)
+    drawing = user.drawings.create!(drawing_params)
     render json: drawing, status: :created
-    else 
-      render json: { errors: drawing.errors.full_messages }, status: :unprocessable_entity
-    end
   end
 
   def update
     drawing = find_drawing
-  
-    if drawing.update(drawing_params)
+    drawing.update!(drawing_params)
       render json: drawing, status: :ok
-    else
-      render json: { errors: drawing.errors.full_messages }, status: :unprocessable_entity
-    end
   end
 
   def destroy
