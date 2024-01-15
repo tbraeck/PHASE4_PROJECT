@@ -7,3 +7,4 @@ class Drawing < ApplicationRecord
     validates :verb, presence: true
     validates :adverb, presence: true
 end
+    
