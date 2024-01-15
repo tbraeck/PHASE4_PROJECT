@@ -22,6 +22,7 @@ const handleAdd = (newDrawing) => {
     setAllCategories(newDrawingArray)
     }
 
+    console.log(allCategories)
 const handleLogout = ()=> {
   setUser(null)
 }

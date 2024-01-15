@@ -3,13 +3,14 @@ import DrawingCard from './DrawingCard';
 import NewUserDrawing from './NewUserDrawing';
 import { useParams } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
+import { CategoryContext } from './contexts/CategoryContext.js';
+
 import './styles/CategoryCard.css';
 
-const CategoryCard = ({ categories, setCategories, handleAdd }) => {
-  const [category, setCategory] = useState({
-    drawings: []
-})
+const CategoryCard = ({ handleAdd }) => {
+  const {allCategories, setAllCategories} = useContext(CategoryContext);
 const [userDrawings, setUserDrawings] = useState([])
+const {category, setCategory} = useState([])
 
 const [errors, setErrors] = useState([]);
 
@@ -17,15 +18,15 @@ const { user } = useContext(UserContext);
 
 const {id} = useParams()
 
-const isUserProfile = user.username !== category.name;
+const isUserProfile = user.username !== allCategories.name;
 
 
 useEffect(() => {
-  const selectedCategory = categories.find(cat => cat.id === parseInt(id));
+  const selectedCategory = allCategories.find(cat => cat.id === parseInt(id));
   if(selectedCategory) {
     setCategory(selectedCategory)
   }
-}, [categories, id])
+}, [id, setAllCategories, allCategories, setCategory])
 
 const handleSaveDrawingToUserProfile = (drawing) => {
   if (!isUserProfile) {
@@ -83,9 +84,9 @@ const handleDeleteClick = (user_id, drawing_id) => {
       return response.json();
     })
     .then(() => {
-      const deleteDrawing = category.drawings.filter(r => r.id !== drawing_id);
-      const updatedDrawings = categories.map(c => c.id === category.id ? { ...c, drawings: deleteDrawing } : c);
-      setCategories(updatedDrawings);
+      const deleteDrawing = allCategories.drawings.filter(r => r.id !== drawing_id);
+      const updatedDrawings = allCategories.map(c => c.id === allCategories.id ? { ...c, drawings: deleteDrawing } : c);
+      setAllCategories(updatedDrawings);
       handleUpdateSubmit(drawing_id, deleteDrawing);
     })
     .catch((error) => {
@@ -120,7 +121,7 @@ const catDrawings = category.drawings.map((drawing) => (
      drawing={drawing}
      user={user}
      category={category}
-     categories={categories}
+     categories={allCategories}
      handleDeleteClick={handleDeleteClick}
      isUserProfile={isUserProfile}
      handleUpdateSubmit={handleUpdateSubmit}
@@ -153,8 +154,8 @@ const catDrawings = category.drawings.map((drawing) => (
             </div>
             <div className="newUserForm">
               <NewUserDrawing
-                categories={categories}
-                setCategories={setCategories}
+                allCategories={allCategories}
+                setAllCategories={setAllCategories}
                 category={category}
                 handleAdd={handleAdd}
                 user={user}

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext} from "react";
 import { Link } from 'react-router-dom';
+import { CategoryContext } from './contexts/CategoryContext.js';
 
-const CategoryList = ({categories}) => {
-   const categoryItems = categories.map((category) => (
+
+const CategoryList = () => {
+    const {allCategories} = useContext(CategoryContext);
+
+   const categoryItems = allCategories.map((category) => (
         <div key={category.id}>
             <h1>
                 <Link to={`/categories/${category.id}`}>
