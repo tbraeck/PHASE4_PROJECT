@@ -16,9 +16,7 @@ const [categories, setCategories] = useState({
   drawings: []
 });
 
-
 const {user, setUser} = useContext(UserContext);
-
 
   useEffect(()=> {
     fetch("/categories")
@@ -63,6 +61,7 @@ return (
             <Route path="/categories/:id/edit" element={<CategoryCard categories={categories} setCategories={setCategories} handleAdd={handleAdd}/>}/>
             <Route path="/users/:user_id/drawings/:drawing_id" element={<EditDrawing user={user} handleUpdateItem={handleUpdateItem} categories={categories}/>} />
             <Route path="/user-profile" element={user ? <UserProfile user={user}/> : <Navigate to="/" />} />
+            <Route path="/user/:username" component={UserProfile} />
         </Routes>
       </div>
   );

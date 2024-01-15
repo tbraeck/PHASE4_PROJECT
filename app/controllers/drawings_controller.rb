@@ -1,6 +1,21 @@
 class DrawingsController < ApplicationController
   skip_before_action :authorize
 
+  def create
+    drawing = @current_user.drawings.create!(drawing_params)
+    render json: drawing, status: :created
+  end
+
+  def update
+    drawing = @current_user.user_drawings.find_by(id: params[:id])
+    if drawing
+      drawing.update!(drawing_params)
+      render json: drawing, status: :ok
+    else
+      render json: { error: 'Drawing not found or unauthorized' }, status: :not_found
+    end
+  end
+
   def index
     drawings = Drawing.all
     render json: drawings, status: :ok
@@ -11,6 +26,7 @@ class DrawingsController < ApplicationController
     render json: drawing, status: :ok
   end
 
+<<<<<<< HEAD
   def create
     user = User.find(params[:user_id])
     drawing = user.drawings.create!(drawing_params)
@@ -23,19 +39,26 @@ class DrawingsController < ApplicationController
       render json: drawing, status: :ok
   end
 
+=======
+>>>>>>> new-name/Tate-Main
   def destroy
-    drawing = find_drawing
-    drawing.destroy
-    head :no_content
+    drawing = @current_user.user_drawings.find_by(id: params[:id])
+    if drawing
+      drawing.destroy
+      head :no_content
+    else
+      render json: { error: 'Drawing not found or unauthorized' }, status: :not_found
+    end
   end
 
   private
-   
+
   def find_drawing
-      Drawing.find(params[:id])
-  end
+    Drawing.find(params[:id])
+end
 
   def drawing_params
-      params.require(:drawing).permit(:adjective, :noun, :verb, :adverb, :user_id, :category_id)
+      params.permit(:adjective, :noun, :verb, :adverb, :user_id, :category_id)
     end
+
 end

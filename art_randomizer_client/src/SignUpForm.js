@@ -6,6 +6,7 @@ const SignUpForm = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -41,11 +42,56 @@ const SignUpForm = ({ setUser }) => {
   };
   
   
+=======
+  const [error, setError] = useState(null); // Add error state
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    fetch("http://localhost:3000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      passwordConfirmation,
+    }),
+  })
+    .then((response) => {
+      setLoading(false);
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json().then((errorData) => {
+          throw new Error(errorData.message);
+        });
+      }
+    })
+    .then((user) => {
+      setUser(user);
+    })
+    .catch((error) => {
+      setLoading(false);
+      setError('Username must be unique. Password must be at least 8 characters long');
+      setTimeout(() => {
+        setError(null);
+      }, 3000); 
+    
+    });
+  };
+>>>>>>> new-name/Tate-Main
 
   return (
     <div>
       <div>
         <h2>Sign Up</h2>
+<<<<<<< HEAD
+=======
+        {error && <p className="error-message">{error}</p>} 
+>>>>>>> new-name/Tate-Main
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
@@ -58,7 +104,10 @@ const SignUpForm = ({ setUser }) => {
           />
           <br />
           <br />
+<<<<<<< HEAD
 
+=======
+>>>>>>> new-name/Tate-Main
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -68,7 +117,10 @@ const SignUpForm = ({ setUser }) => {
             onChange={(e) => setPassword(e.target.value)}
             className="form-input"
           />
+<<<<<<< HEAD
 
+=======
+>>>>>>> new-name/Tate-Main
           <label htmlFor="password_confirmation">Password Confirmation</label>
           <input
             id="password_confirmation"
@@ -78,8 +130,11 @@ const SignUpForm = ({ setUser }) => {
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             className="form-input"
           />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> new-name/Tate-Main
           <button className="form-button" type="submit">
             {loading ? 'Loading...' : 'Sign Up'}
           </button>
