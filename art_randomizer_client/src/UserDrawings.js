@@ -6,11 +6,8 @@ const UserDrawings = ({ user, handleSaveDrawingToUserProfile }) => {
   const [userDrawings, setUserDrawings] = useState([])
  
   useEffect(() => {
-<<<<<<< HEAD
     fetch(`/users/${user.id}/user_drawings`)
-=======
     fetch(`http://localhost:3000/users/${user.id}/user_drawings`)
->>>>>>> new-name/Tate-Main
       .then((response) => {
         if (response.ok) {
           return response.json();
