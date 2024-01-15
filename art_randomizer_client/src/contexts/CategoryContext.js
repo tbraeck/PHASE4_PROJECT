@@ -1,22 +1,25 @@
-import React, {useState, useEffect, createContext} from "react";
+import React, { useState, useEffect, createContext } from "react";
 
 const CategoryContext = createContext();
 
 function CategoryProvider({ children }) {
-    const [allCategories, setAllCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState({ drawings: [] });
 
-    useEffect(()=> {
-            fetch("/categories").then((res) => {
-                if(res.ok){
-                    res.json().then((data) => {
-                      setAllCategories(data)}) 
-                  }
-                })
-            
-          }, [])
+  useEffect(() => {
+    fetch("/categories").then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          setAllCategories({ drawings: data });
+        });
+      }
+    });
+  }, []);
 
-  
-  return <CategoryContext.Provider value={{allCategories, setAllCategories}}>{children}</CategoryContext.Provider>;
+  return (
+    <CategoryContext.Provider value={{ allCategories, setAllCategories }}>
+      {children}
+    </CategoryContext.Provider>
+  );
 }
 
 export { CategoryContext, CategoryProvider };

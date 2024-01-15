@@ -1,10 +1,6 @@
 class CategoriesController < ApplicationController
 skip_before_action :authorize
 
-<<<<<<< HEAD
-=======
-
->>>>>>> new-name/Tate-Main
   def index
     categories = Category.includes(:drawings).all
     render json: categories, status: :ok

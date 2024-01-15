@@ -12,17 +12,17 @@ import React, { useContext} from 'react';
 import { UserContext } from './contexts/UserContext';
 import { CategoryContext } from './contexts/CategoryContext.js';
 
-
 function App() {
 const {user, setUser} = useContext(UserContext);
 const {allCategories, setAllCategories} = useContext(CategoryContext);
+
+console.log(allCategories)
 
 const handleAdd = (newDrawing) => {
     const newDrawingArray = [...allCategories, newDrawing]
     setAllCategories(newDrawingArray)
     }
 
-    console.log(allCategories)
 const handleLogout = ()=> {
   setUser(null)
 }
@@ -30,13 +30,15 @@ const handleLogout = ()=> {
 const handleUpdateItem = (updatedDrawing) => {
   const editedItems = allCategories.drawings.map((item) => {
     if (item.id === updatedDrawing.id) {
-      return updatedDrawing
+      return updatedDrawing;
     } else {
       return item;
-    } 
+    }
   });
-  setAllCategories(editedItems)
-}
+  setAllCategories({ drawings: editedItems });
+};
+
+
 
 if(!user) return <Login  />
 

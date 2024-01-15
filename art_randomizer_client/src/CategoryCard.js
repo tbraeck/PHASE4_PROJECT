@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import DrawingCard from './DrawingCard';
 import NewUserDrawing from './NewUserDrawing';
 import { useParams } from 'react-router-dom';
@@ -9,24 +9,22 @@ import './styles/CategoryCard.css';
 
 const CategoryCard = ({ handleAdd }) => {
   const {allCategories, setAllCategories} = useContext(CategoryContext);
+  const { user } = useContext(UserContext);
 const [userDrawings, setUserDrawings] = useState([])
 const {category, setCategory} = useState([])
 
 const [errors, setErrors] = useState([]);
 
-const { user } = useContext(UserContext);
 
 const {id} = useParams()
 
 const isUserProfile = user.username !== allCategories.name;
 
-
-useEffect(() => {
-  const selectedCategory = allCategories.find(cat => cat.id === parseInt(id));
-  if(selectedCategory) {
-    setCategory(selectedCategory)
+const selectedCategory = allCategories.find(cat => cat.id === parseInt(id));
+  
+if(!selectedCategory) {
+return <div>Loading...</div>;
   }
-}, [id, setAllCategories, allCategories, setCategory])
 
 const handleSaveDrawingToUserProfile = (drawing) => {
   if (!isUserProfile) {

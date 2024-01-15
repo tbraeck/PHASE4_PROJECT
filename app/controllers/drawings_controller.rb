@@ -26,21 +26,6 @@ class DrawingsController < ApplicationController
     render json: drawing, status: :ok
   end
 
-<<<<<<< HEAD
-  def create
-    user = User.find(params[:user_id])
-    drawing = user.drawings.create!(drawing_params)
-    render json: drawing, status: :created
-  end
-
-  def update
-    drawing = find_drawing
-    drawing.update!(drawing_params)
-      render json: drawing, status: :ok
-  end
-
-=======
->>>>>>> new-name/Tate-Main
   def destroy
     drawing = @current_user.user_drawings.find_by(id: params[:id])
     if drawing
